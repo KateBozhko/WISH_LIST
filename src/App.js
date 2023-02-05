@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from "react";
+import {data} from "./data.js";
+import "./App.css"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
 
+const [gifts, setGift] = useState(data);
+
+const removeItem = (id) => {
+  const array = gifts.filter(gift => gift.id !== id);
+setGift(array);
+} 
+  return(
+    <div>
+      {gifts.map((element => {
+        const {id, gifty, image} = element;
+        return(
+          <div key={id}>
+            <div className="container">
+              <h1>List of {gifts.length} gifts.</h1>
+            </div>
+            <div className="container">
+          <h2>{id} - {gifty}</h2>
+          </div>
+          <div className="container">
+          <img src={image} width="300px" height="280px" alt="gift"/>
+          </div>
+          <div className="container">
+            <button className="btn" onClick={() => removeItem(id)}>REMOVE</button>
+          </div>
+            </div>
+        )
+      }))}
+      <div className="container">
+  <button className="btnTwo" onClick={() => setGift([])}>DELETE ALL</button>
+      </div>
+    </div>
+  )
+}
 export default App;
