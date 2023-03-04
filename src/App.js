@@ -12,13 +12,14 @@ setGift(array);
 } 
   return(
     <div>
+       <div className="container">
+              <h1>Wish list of the {gifts.length} gifts.</h1>
+            </div>
       {gifts.map((element => {
         const {id, gifty, image} = element;
         return(
           <div key={id}>
-            <div className="container">
-              <h1>List of {gifts.length} gifts.</h1>
-            </div>
+           
             <div className="container">
           <h2>{id} - {gifty}</h2>
           </div>
